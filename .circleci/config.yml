@@ -5,9 +5,6 @@ jobs:
     machine:
       image: ubuntu-2204:current
     resource_class: large
-    parameters:
-      job-name:
-        type: string
     steps:
       - checkout
       - run:
@@ -44,7 +41,60 @@ workflows:
   run-svr:
     jobs:
       - run-files:
-          name: "run-files-<< matrix.job-name >>"
-          matrix:
-            parameters:
-              job-name: [thu0,thu1,thu2,thu3,thu4,thu5,thu6,thu7,thu8,thu9,thu10,thu11,thu12,thu13,thu14,thu15,thu16,thu17,thu18,thu19,thu20,thu21,thu22,thu23,thu24,thu25,thu26,thu27,thu28]
+          name: thu0
+      - run-files:
+          name: thu1
+      - run-files:
+          name: thu2
+      - run-files:
+          name: thu3
+      - run-files:
+          name: thu4
+      - run-files:
+          name: thu5
+      - run-files:
+          name: thu6
+      - run-files:
+          name: thu7
+      - run-files:
+          name: thu8
+      - run-files:
+          name: thu9
+      - run-files:
+          name: thu10
+      - run-files:
+          name: thu11
+      - run-files:
+          name: thu12
+      - run-files:
+          name: thu13
+      - run-files:
+          name: thu14
+      - run-files:
+          name: thu15
+      - run-files:
+          name: thu16
+      - run-files:
+          name: thu17
+      - run-files:
+          name: thu18
+      - run-files:
+          name: thu19
+      - run-files:
+          name: thu20
+      - run-files:
+          name: thu21
+      - run-files:
+          name: thu22
+      - run-files:
+          name: thu23
+      - run-files:
+          name: thu24
+      - run-files:
+          name: thu25
+      - run-files:
+          name: thu26
+      - run-files:
+          name: thu27
+      - run-files:
+          name: thu28
