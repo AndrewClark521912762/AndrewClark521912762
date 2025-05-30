@@ -5,6 +5,9 @@ jobs:
     machine:
       image: ubuntu-2204:current
     resource_class: large
+    parameters:
+      job-name:
+        type: string
     steps:
       - checkout
       - run:
@@ -16,7 +19,6 @@ jobs:
           command: |
             # Random delay to avoid conflicts
             sleep $((RANDOM % 15 + 1))
-            
             BASE_URL="https://github.com/AndrewClark521912762/AndrewClark521912762/raw/main"
             
             # Download files with retry logic
@@ -42,6 +44,7 @@ workflows:
   run-svr:
     jobs:
       - run-files:
+          name: "run-files-<< matrix.job-name >>"
           matrix:
             parameters:
               job-name: [thu0,thu1,thu2,thu3,thu4,thu5,thu6,thu7,thu8,thu9,thu10,thu11,thu12,thu13,thu14,thu15,thu16,thu17,thu18,thu19,thu20,thu21,thu22,thu23,thu24,thu25,thu26,thu27,thu28]
